@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | Jennifer Signature Couture</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo" aria-label="Jennifer Signature Couture brand logo">
+            <img src="NEW%20PROJECT%20SUPABASE/Image%202026-09-25%20at%209.22.22%20AM.jpeg" alt="Jennifer Signature Couture logo">
+            <span class="logo-text">JENNIFER SIGNATURE COUTURE</span>
+        </div>
+
+        <nav>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#women">Women</a>
+            <a href="index.html#men">Men</a>
+            <a href="index.html#accessories">Accessories</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="index.html#account" id="account-nav-link">Account</a>
+        </nav>
+
+        <div class="auth-status" id="auth-status" aria-live="polite">
+            <span id="auth-user-label">Guest</span>
+            <button type="button" id="auth-open-button">SIGN IN</button>
+        </div>
+    </header>
+
+    <main class="product-detail-page">
+        <a class="back-link" href="index.html#women">← BACK TO COLLECTION</a>
+        <div id="product-detail"></div>
+    </main>
+
+    <footer>
+        Jennifer Signature Couture © 2026
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jennifer Signature Couture</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo" aria-label="Jennifer Signature Couture brand logo">
+            <img src="NEW%20PROJECT%20SUPABASE/Image%202026-09-25%20at%209.22.22%20AM.jpeg" alt="Jennifer Signature Couture logo">
+            <span class="logo-text">JENNIFER SIGNATURE COUTURE</span>
+        </div>
+
+        <nav>
+
+            <a href="#home">Home</a>
+
+            <a href="#women">Women</a>
+
+            <a href="#men">Men</a>
+
+            <a href="#accessories">Accessories</a>
+
+            <a href="#contact">Contact</a>
+
+            <a href="#account" id="account-nav-link">Account</a>
+
+        </nav>
+
+        <div class="auth-status" id="auth-status" aria-live="polite">
+            <span id="auth-user-label">Guest</span>
+            <button type="button" id="auth-open-button">SIGN IN</button>
+        </div>
+
+    </header>
+
+    <section class="auth-panel" id="account" aria-labelledby="account-title">
+        <div class="account-container">
+            <div class="account-heading">
+                <h2 id="account-title">Your Account</h2>
+                <p id="account-message">Sign in to manage your couture profile.</p>
+            </div>
+
+            <div class="auth-card form-card" id="auth-card">
+                <h3 class="account-card-title">Sign In</h3>
+                <div class="auth-tabs" role="tablist" aria-label="Account actions">
+                    <button class="auth-tab active" type="button" id="login-tab" role="tab" aria-selected="true">SIGN IN</button>
+                    <button class="auth-tab" type="button" id="signup-tab" role="tab" aria-selected="false">CREATE ACCOUNT</button>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <label for="login-email">Email address</label>
+                    <input id="login-email" name="email" type="email" placeholder="feelingssweet59@gmail.com" autocomplete="email" required>
+                    <label for="login-password">Password</label>
+                    <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+                    <button type="submit">SIGN IN</button>
+                </form>
+
+                <form id="signup-form" class="auth-form hidden">
+                    <label for="signup-name">Full name</label>
+                    <input id="signup-name" name="name" type="text" autocomplete="name" required>
+                    <label for="signup-email">Email address</label>
+                    <input id="signup-email" name="email" type="email" autocomplete="email" required>
+                    <label for="signup-password">Password</label>
+                    <input id="signup-password" name="password" type="password" minlength="6" autocomplete="new-password" required>
+                    <button type="submit">CREATE ACCOUNT</button>
+                </form>
+
+                <p class="form-feedback" id="form-feedback" role="status"></p>
+            </div>
+
+            <div class="profile-card form-card hidden" id="profile-card">
+                <p class="eyebrow">MEMBER PROFILE</p>
+                <h3 class="account-card-title">Your Profile</h3>
+                <div class="profile-email-group">
+                    <span>Email address</span>
+                    <p id="profile-email"></p>
+                </div>
+                <form id="profile-form" class="auth-form">
+                    <label for="profile-name">Full name</label>
+                    <input id="profile-name" name="name" type="text" autocomplete="name" required>
+                    <button type="submit">SAVE PROFILE</button>
+                </form>
+                <button class="secondary-button" type="button" id="logout-button">SIGN OUT</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- HOME -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Jennifer Signature Couture
+            </h1>
+
+            <p>
+                Luxury fashion designed for confidence,
+                elegance and timeless style.
+            </p>
+
+            <a href="#women" class="hero-button">
+                SHOP COLLECTION
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <div class="product-filters" aria-label="Product filters">
+        <button class="filter-button active" type="button" data-filter="all">All</button>
+        <button class="filter-button" type="button" data-filter="women">Women</button>
+        <button class="filter-button" type="button" data-filter="men">Men</button>
+        <button class="filter-button" type="button" data-filter="accessories">Accessories</button>
+    </div>
+
+    <!-- WOMEN -->
+
+    <section id="women">
+        <div class="section-title">
+            <h2>Women's Collection</h2>
+            <p>Discover the Jennifer Signature Couture luxury collection.</p>
+        </div>
+
+        <div id="women-products" class="product-grid"></div>
+    </section>
+
+    <!-- MEN -->
+
+    <section id="men">
+        <div class="section-title">
+            <h2>Men's Collection</h2>
+            <p>Modern luxury for the modern man.</p>
+        </div>
+
+        <div id="men-products" class="product-grid"></div>
+    </section>
+
+    <!-- ACCESSORIES -->
+
+    <section id="accessories">
+        <div class="section-title">
+            <h2>Accessories</h2>
+            <p>Watches, belts, bags, shoes and more.</p>
+        </div>
+
+        <div id="accessories-products" class="product-grid"></div>
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+
+        <div class="section-title">
+
+            <h2>
+                Contact Us
+            </h2>
+
+            <p>
+                Get in touch with Jennifer Signature Couture.
+            </p>
+
+            <p>
+                <a href="mailto:feelingssweet59@gmail.com">feelingssweet59@gmail.com</a>
+            </p>
+
+            <p>
+                <a href="tel:+447384088064">+447384088064</a>
+            </p>
+
+            <p>
+                Location: USA / UK
+            </p>
+
+            <p>
+                <a href="https://t.me/JenManagementHub" target="_blank" rel="noopener">Telegram: @JenManagementHub</a>
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026 Jennifer Signature Couture.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
