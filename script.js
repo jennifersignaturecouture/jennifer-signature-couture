@@ -6,27 +6,27 @@ const DINNER_DRESS_IMAGE = "Dinner%20Dress/Dinner%20Dress%20Image%202026-09-24%2
 const productCatalog = {
 	"evening-dress": {
 		name: "Evening Dress",
-		price: "$45,000",
+		price: "$30,000",
 		description: "A sculpted evening silhouette with luxury draping and an elegant couture finish.",
 		image: "gown-01.jpg/Image%202026-09-23%20at%206.52.13%20PM.jpeg",
 		category: "women"
 	},
 	"silk-dress": {
 		name: "Silk Dress",
-		price: "$25,000",
+		price: "$20,000",
 		description: "A fluid silk piece designed for graceful movement and understated elegance.",
 		image: "silk-dress.jpg",
 		category: "women"
 	},
 	"diamond-dress": {
 		name: "Diamond Dress",
-		price: "$150,000",
+		price: "$100,000",
 		description: "Statement glamour with luminous detailing and a striking couture profile.",
 		image: "diamond-dress.jpeg",
 		category: "women"
 	},
 	"dinner-dress": {
-		name: "Dinner Dress",
+		name: "Dinner wears",
 		price: "$20,000",
 		description: "A refined dinner dress for elevated evenings and refined social moments.",
 		image: DINNER_DRESS_IMAGE,
