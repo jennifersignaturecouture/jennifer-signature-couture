@@ -353,7 +353,7 @@ function initializeCartUI() {
 				</div>
 				<div id="cart-items" class="cart-items"></div>
 				<div class="checkout-box">
-					<h4>Checkout</h4>
+					<h4>Order &amp; Payment Enquiry</h4>
 					<form id="checkout-form" class="checkout-form">
 						<label for="checkout-name">Full name</label>
 						<input id="checkout-name" name="name" type="text" required>
@@ -361,7 +361,7 @@ function initializeCartUI() {
 						<input id="checkout-email" name="email" type="email" required>
 						<label for="checkout-phone">Phone</label>
 						<input id="checkout-phone" name="phone" type="tel" required>
-						<button type="submit">PLACE ORDER</button>
+						<button type="submit">PREPARE ORDER ENQUIRY</button>
 					</form>
 					<p id="checkout-message" class="checkout-message" aria-live="polite"></p>
 				</div>
@@ -400,25 +400,83 @@ function initializeCartUI() {
 	if (checkoutForm) {
 		checkoutForm.addEventListener("submit", (event) => {
 			event.preventDefault();
-			const formData = new FormData(event.target);
-			const name = formData.get("name");
+			const formData = new FormData(event.currentTarget);
+			const name = String(formData.get("name") || "").trim();
+			const email = String(formData.get("email") || "").trim();
+			const phone = String(formData.get("phone") || "").trim();
 			const message = document.querySelector("#checkout-message");
-			if (!getCart().length) {
-				if (message) message.textContent = "Your cart is empty. Add an item before checking out.";
-				if (message) message.classList.add("error");
+			const cart = getCart();
+			if (!cart.length) {
+				if (message) {
+					message.textContent = "Your cart is empty. Add an item before preparing an order enquiry.";
+					message.classList.add("error");
+				}
 				return;
 			}
-			if (message) {
-				message.textContent = `Thank you, ${name}. Your order has been placed successfully.`;
-				message.classList.remove("error");
-			}
-			localStorage.removeItem(CART_STORAGE_KEY);
-			renderCart();
-			updateCartBadge();
-			event.target.reset();
+			if (!message) return;
+
+			const orderLines = cart.map((item) => {
+				const product = productCatalog[item.id] || productCatalog["evening-dress"];
+				const quantity = Number(item.qty || 0);
+				const lineTotal = parsePrice(product.price) * quantity;
+				return String(quantity) + " x " + product.name + " - " + product.price + " each (line total $" + lineTotal.toLocaleString() + ")";
+			});
+			const subtotal = cart.reduce((sum, item) => {
+				const product = productCatalog[item.id] || productCatalog["evening-dress"];
+				return sum + parsePrice(product.price) * Number(item.qty || 0);
+			}, 0);
+			const orderText = [
+				"Hello Jennifer Signature Couture, I would like to ask about payment for this order.",
+				"",
+				"Name: " + name,
+				"Email: " + email,
+				"Phone: " + phone,
+				"",
+				"Order items:",
+				...orderLines,
+				"",
+				"Subtotal: $" + subtotal.toLocaleString(),
+				"Please contact me to confirm availability and payment details."
+			].join("\n");
+
+			message.replaceChildren();
+			message.classList.remove("error");
+			const instructions = document.createElement("p");
+			instructions.textContent = "Your enquiry is ready. No payment is taken on this website. Choose Telegram or email to discuss payment.";
+			const orderDetails = document.createElement("pre");
+			orderDetails.textContent = orderText;
+			orderDetails.style.whiteSpace = "pre-wrap";
+			orderDetails.style.overflowWrap = "anywhere";
+			const actions = document.createElement("div");
+			actions.style.display = "flex";
+			actions.style.flexWrap = "wrap";
+			actions.style.gap = "8px";
+			const telegramLink = document.createElement("a");
+			telegramLink.href = "https://t.me/JenManagementHub";
+			telegramLink.target = "_blank";
+			telegramLink.rel = "noopener noreferrer";
+			telegramLink.className = "secondary-button";
+			telegramLink.textContent = "MESSAGE ON TELEGRAM";
+			const emailLink = document.createElement("a");
+			emailLink.href = "mailto:feelingssweet59@gmail.com?subject=" + encodeURIComponent("Order payment enquiry") + "&body=" + encodeURIComponent(orderText);
+			emailLink.className = "secondary-button";
+			emailLink.textContent = "EMAIL ABOUT PAYMENT";
+			const copyButton = document.createElement("button");
+			copyButton.type = "button";
+			copyButton.className = "secondary-button";
+			copyButton.textContent = "COPY DETAILS FOR TELEGRAM";
+			copyButton.addEventListener("click", async () => {
+				try {
+					await navigator.clipboard.writeText(orderText);
+					copyButton.textContent = "COPIED — PASTE INTO TELEGRAM";
+				} catch (error) {
+					copyButton.textContent = "SELECT AND COPY THE ORDER DETAILS ABOVE";
+				}
+			});
+			actions.append(telegramLink, emailLink, copyButton);
+			message.append(instructions, orderDetails, actions);
 		});
 	}
-
 	updateCartBadge();
 	renderCart();
 }
