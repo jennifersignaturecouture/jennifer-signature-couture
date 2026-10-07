@@ -404,7 +404,15 @@ function initializeCartUI() {
 			const name = String(formData.get("name") || "").trim();
 			const email = String(formData.get("email") || "").trim();
 			const phone = String(formData.get("phone") || "").trim();
-			const message = document.querySelector("#checkout-message");
+			let message = document.querySelector("#checkout-message");
+			if (message && message.tagName === "P") {
+				const messageContainer = document.createElement("div");
+				messageContainer.id = message.id;
+				messageContainer.className = message.className;
+				messageContainer.setAttribute("aria-live", "polite");
+				message.replaceWith(messageContainer);
+				message = messageContainer;
+			}
 			const cart = getCart();
 			if (!cart.length) {
 				if (message) {
