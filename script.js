@@ -450,7 +450,7 @@ function initializeCartUI() {
 			message.replaceChildren();
 			message.classList.remove("error");
 			const instructions = document.createElement("p");
-			instructions.textContent = "Your enquiry is ready. No payment is taken on this website. Choose Telegram or email to discuss payment.";
+			instructions.textContent = "Your enquiry is ready. No payment is taken on this website. Send it by email or continue on Telegram.";
 			const orderDetails = document.createElement("pre");
 			orderDetails.textContent = orderText;
 			orderDetails.style.whiteSpace = "pre-wrap";
@@ -481,7 +481,7 @@ function initializeCartUI() {
 					copyButton.textContent = "SELECT AND COPY THE ORDER DETAILS ABOVE";
 				}
 			});
-			actions.append(telegramLink, emailLink, copyButton);
+			const emailStatus = document.createElement("p"); 			emailStatus.setAttribute("role", "status"); 			const emailSendButton = document.createElement("button"); 			emailSendButton.type = "button"; 			emailSendButton.className = "secondary-button"; 			emailSendButton.textContent = "SEND ENQUIRY BY EMAIL"; 			emailSendButton.addEventListener("click", async () => { 				emailSendButton.disabled = true; 				emailSendButton.textContent = "SENDING..."; 				emailStatus.textContent = "Sending your enquiry..."; 				emailStatus.classList.remove("error"); 				try { 					if (typeof emailjs === "undefined") throw new Error("EmailJS library did not load."); 					await emailjs.send("service_sahl6op", "template_bxm837g", { 						name: name, 						email: email, 						phone: phone, 						order_details: orderText 					}); 					emailStatus.textContent = "Your enquiry was sent successfully. We will contact you soon."; 				} catch (error) { 					console.error("EmailJS order enquiry failed:", error); 					emailStatus.textContent = "We couldn't send the email. Please use Telegram or the email option."; 					emailStatus.classList.add("error"); 				} finally { 					emailSendButton.disabled = false; 					emailSendButton.textContent = "SEND ENQUIRY BY EMAIL"; 				} 			}); 			actions.append(telegramLink, emailLink, copyButton, emailSendButton, emailStatus);
 			message.append(instructions, orderDetails, actions);
 		});
 	}
@@ -1149,7 +1149,7 @@ function initializeCartUI() {
 			message.replaceChildren();
 			message.classList.remove("error");
 			const instructions = document.createElement("p");
-			instructions.textContent = "Your enquiry is ready. No payment is taken on this website. Choose Telegram or email to discuss payment.";
+			instructions.textContent = "Your enquiry is ready. No payment is taken on this website. Send it by email or continue on Telegram.";
 			const orderDetails = document.createElement("pre");
 			orderDetails.textContent = orderText;
 			orderDetails.style.whiteSpace = "pre-wrap";
@@ -1180,7 +1180,7 @@ function initializeCartUI() {
 					copyButton.textContent = "SELECT AND COPY THE ORDER DETAILS ABOVE";
 				}
 			});
-			actions.append(telegramLink, emailLink, copyButton);
+			const emailStatus = document.createElement("p"); 			emailStatus.setAttribute("role", "status"); 			const emailSendButton = document.createElement("button"); 			emailSendButton.type = "button"; 			emailSendButton.className = "secondary-button"; 			emailSendButton.textContent = "SEND ENQUIRY BY EMAIL"; 			emailSendButton.addEventListener("click", async () => { 				emailSendButton.disabled = true; 				emailSendButton.textContent = "SENDING..."; 				emailStatus.textContent = "Sending your enquiry..."; 				emailStatus.classList.remove("error"); 				try { 					if (typeof emailjs === "undefined") throw new Error("EmailJS library did not load."); 					await emailjs.send("service_sahl6op", "template_bxm837g", { 						name: name, 						email: email, 						phone: phone, 						order_details: orderText 					}); 					emailStatus.textContent = "Your enquiry was sent successfully. We will contact you soon."; 				} catch (error) { 					console.error("EmailJS order enquiry failed:", error); 					emailStatus.textContent = "We couldn't send the email. Please use Telegram or the email option."; 					emailStatus.classList.add("error"); 				} finally { 					emailSendButton.disabled = false; 					emailSendButton.textContent = "SEND ENQUIRY BY EMAIL"; 				} 			}); 			actions.append(telegramLink, emailLink, copyButton, emailSendButton, emailStatus);
 			message.append(instructions, orderDetails, actions);
 		});
 	}
