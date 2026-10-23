@@ -27,7 +27,7 @@ Jennifer Signature Couture showcases the beauty of fashion and individuality. Th
 
 Explore Jennifer Signature Couture online:
 
-Visit Jennifer Signature Couture
+[Visit Jennifer Signature Couture](https://jennifersignaturecouture.github.io/jennifer-signature-couture/)
 
 🎯 Project Goals
 
