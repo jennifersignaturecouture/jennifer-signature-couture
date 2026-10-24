@@ -1,4 +1,8 @@
-Jennifer Signature Couture
+
+![Jennifer Signature Couture](New%20Project/Image%202026-09-25%20at%209.22.22%20AM.jpg)
+
+# Jennifer Signature Couture
+
 
 Elegance. Sophistication. Timeless Style.
 
